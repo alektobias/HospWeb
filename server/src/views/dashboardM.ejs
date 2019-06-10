@@ -1,0 +1,69 @@
+<div style="height: 100vh; background-color: lightblue; padding-top: 30px;">
+    <div class="container">
+
+        <div class="row d-flex align-items-start">
+            <div class="col-3 mr-2 sticky-top" style="background-color: white; padding: 15px; border-radius: 3px;">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link d-inline-flex align-items-center" id="v-pills-pagina-inicial-tab" data-toggle="pill" href="#v-pills-pagina-inicial" role="tab" aria-controls="v-pills-pagina-inicial" aria-selected="true">
+                        <i class="fas fa-home mr-1"></i>
+                        Página Inicial
+                    </a>
+                    
+                    <a class="nav-link  active d-inline-flex align-items-center" id="v-pills-procedimento-tab" data-toggle="pill" href="#v-pills-procedimento" role="tab" aria-controls="v-pills-procedimento" aria-selected="false">
+                        <i class="fas fa-stethoscope mr-1"></i>
+                        Procedimento
+                    </a>
+
+                    <a class="nav-link d-inline-flex align-items-center" id="v-pills-perfi-tab" data-toggle="pill" href="#v-pills-perfi" role="tab" aria-controls="v-pills-perfi" aria-selected="false">
+                            <i class="fas fa-user mr-1"></i>
+                        Perfil
+                    </a>
+                </div>
+            </div>
+            <div class="col-8 w-100 d-block" style="background-color: white; padding: 15px; border-radius: 3px;">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show" id="v-pills-pagina-inicial" role="tabpanel" aria-labelledby="v-pills-pagina-inicial-tab">Página Inicial</div>
+
+                    <div class="tab-pane fade show active" id="v-pills-procedimento" role="tabpanel" aria-labelledby="v-pills-procedimento-tab">
+                        <h3 style="overflow-y: hidden;">Cadastrar procedimento</h3>
+                        <form >
+                            <input placeholder="CRM" class="form-control my-2" id="crm"/>
+                            <input placeholder="CPF" class="form-control my-2" id="cpf"/>
+                            <div class="form-group d-inline-flex w-100">
+                                <select class="form-control mr-1" id="tipo">
+                                    <option value="consulta">Consulta</option>
+                                    <option value="exame">Exame</option>
+                                    <option value="prontuario">Prontuário</option>
+                                </select>
+                                <input placeholder="Data (DD/MM/AAAA)" class="form-control" id="data"/>
+                            </div>
+                            <textarea class="form-control" id="desc"></textarea>
+                            <button type="button" class="btn btn-primary mt-2 float-right" onclick="adicionarProcedimento()">Adiconar Procedimento</button>
+                        </form>
+
+                    </div>
+                  
+                    <div class="tab-pane fade" id="v-pills-perfi" role="tabpanel" aria-labelledby="v-pills-perfi-tab">Perfil</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function adicionarProcedimento() {
+        var crm = document.getElementById('crm').value;
+        var cpf = document.getElementById('cpf').value;
+        var tipo = document.getElementById('tipo').value;
+        var data = document.getElementById('data').value;
+        var desc = document.getElementById('desc').value;
+        const procedimento = {crm, cpf, tipo, data, desc};
+        fetch('http://localhost:5000/adicionarprocedimento', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({crm, cpf, tipo, data, desc})
+        });
+        document.getElementById('desc').value = '';
+    }
+</script>

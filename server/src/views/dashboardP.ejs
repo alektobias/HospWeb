@@ -1,0 +1,96 @@
+<div style="height: 100vh; background-color: lightblue; padding-top: 30px;">
+    <div class="container">
+
+        <div class="row d-flex align-items-start">
+            <div class="col-3 mr-2 sticky-top" style="background-color: white; padding: 15px; border-radius: 3px;">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active d-inline-flex align-items-center" id="v-pills-pagina-inicial-tab" data-toggle="pill" href="#v-pills-pagina-inicial" role="tab" aria-controls="v-pills-pagina-inicial" aria-selected="true">
+                        <i class="fas fa-home mr-1"></i>
+                        Página Inicial
+                    </a>
+                    <a class="nav-link d-inline-flex align-items-center" id="v-pills-exames-tab" data-toggle="pill" href="#v-pills-exames" role="tab" aria-controls="v-pills-exames" aria-selected="false">
+                        <i class="fas fa-heartbeat mr-1"></i>
+                        Exames
+                    </a>
+                    <a class="nav-link d-inline-flex align-items-center" id="v-pills-consultas-tab" data-toggle="pill" href="#v-pills-consultas" role="tab" aria-controls="v-pills-consultas" aria-selected="false">
+                        <i class="fas fa-stethoscope mr-1"></i>
+                        Consultas
+                    </a>
+
+                    <a class="nav-link d-inline-flex align-items-center" id="v-pills-prontuarios-tab" data-toggle="pill" href="#v-pills-prontuarios" role="tab" aria-controls="v-pills-prontuarios" aria-selected="false">
+                        <i class="fas fa-hospital mr-1"></i>
+                        Prontuários
+                    </a>
+                    <a class="nav-link d-inline-flex align-items-center" id="v-pills-perfi-tab" data-toggle="pill" href="#v-pills-perfi" role="tab" aria-controls="v-pills-perfi" aria-selected="false">
+                            <i class="fas fa-user mr-1"></i>
+                        Perfil
+                    </a>
+                </div>
+            </div>
+            <div class="col-8 w-100 d-block" style="background-color: white; padding: 15px; border-radius: 3px;">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-pagina-inicial" role="tabpanel" aria-labelledby="v-pills-pagina-inicial-tab">
+                        <% if (historico.teste.length === 0 ) {%>
+                        <div> <h3 style="overflow-y: hidden;">Desculpe ainda não há nenhum exame cadastrado!</h3></div>
+                        <% } else {%>
+                        <% historico.teste.map( teste => {%>
+                            <div class="my-1 h-auto card ">
+                                <div class="card-header">
+                                    <h5 style='overflow-y: hidden;'>Teste do dia: <%- teste.data %></h5>
+                                    <span style="font-size: 14px; color: grey;" >
+                                        Realizado pelo médico: <a href="/medico/perfil/<%- teste.crm_medico %>"><%- teste.crm_medico %></a>
+                                    </span>
+                                </div>
+                                <div class="card-body">
+                                    <h6 style="overflow-y: hidden;">Descrição do procedimento: </h6>
+                                    <span class="m-2">
+                                        <%- teste.descricao %>
+                                    </span>
+                                </div>
+                            </div>
+                        <% })}%>     
+                    </div>
+    
+                    <div class="tab-pane fade" id="v-pills-exames" role="tabpanel" aria-labelledby="v-pills-exames-tab">
+                       <% if (historico.teste.length === 0 ) {%>
+                        <div> <h3 style="overflow-y: hidden;">Desculpe ainda não há nenhum exame cadastrado!</h3></div>
+                        <% } else {%>
+                        <% historico.exame.map( teste => {%>
+                            <div class="my-1 h-auto card ">
+                                <div class="card-header">
+                                    <h5 class="ml-2" style='overflow-y: hidden;'>Exame do dia: <%- teste.data %></h5>
+                                </div>
+                                <div class="card-body">
+                                    <%- teste.descricao %>
+                                </div>
+                            </div>
+                        <% })}%> 
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-consultas" role="tabpanel" aria-labelledby="v-pills-consultas-tab">
+                        <% if (historico.consulta.length === 0 ) {%>
+                        <div> <h3 style="overflow-y: hidden;">Desculpe ainda não há nenhum consulta cadastrado!</h3></div>
+                        <% } else {%>
+                        <% historico.consulta.map( teste => {%>
+                            <div class="my-2 h-auto">
+                                <h4 class="ml-2" style='overflow-y: hidden;'>Consulta do dia: <%- teste.data %></h4>
+                                <%- teste.descricao %>
+                            </div>
+                        <% })}%> 
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-prontuarios" role="tabpanel" aria-labelledby="v-pills-prontuarios-tab">
+                        <% if (historico.teste.length === 0 ) {%>
+                        <div> <h3 style="overflow-y: hidden;">Desculpe ainda não há nenhum prontuário cadastrado!</h3></div>
+                        <% } else {%>
+                        <% historico.prontuario.map( teste => {%>
+                            <div class="my-2 h-auto">
+                                <h4 class="ml-2" style='overflow-y: hidden;'>Prontuario do dia: <%- teste.data %></h4>
+                                <%- teste.descricao %>
+                            </div>
+                        <% })}%> 
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-perfi" role="tabpanel" aria-labelledby="v-pills-perfi-tab">Perfil</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
