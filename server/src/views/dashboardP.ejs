@@ -30,63 +30,71 @@
             <div class="col-8 w-100 d-block" style="background-color: white; padding: 15px; border-radius: 3px;">
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-pagina-inicial" role="tabpanel" aria-labelledby="v-pills-pagina-inicial-tab">
-                        <% if (historico.teste.length === 0 ) {%>
+                        Página Inicial
+                    </div>
+    
+                    <div class="tab-pane fade" id="v-pills-exames" role="tabpanel" aria-labelledby="v-pills-exames-tab">
+                        <% if (historico.exame.length === 0 ) {%>
                         <div> <h3 style="overflow-y: hidden;">Desculpe ainda não há nenhum exame cadastrado!</h3></div>
                         <% } else {%>
-                        <% historico.teste.map( teste => {%>
+                        <% historico.exame.map( exame => {%>
                             <div class="my-1 h-auto card ">
                                 <div class="card-header">
-                                    <h5 style='overflow-y: hidden;'>Teste do dia: <%- teste.data %></h5>
+                                    <h5 style='overflow-y: hidden;'>Exame do dia: <%- exame.data %></h5>
                                     <span style="font-size: 14px; color: grey;" >
-                                        Realizado pelo médico: <a href="/medico/perfil/<%- teste.crm_medico %>"><%- teste.crm_medico %></a>
+                                        Realizado pelo médico: <a href="/medico/perfil/<%- exame.crm_medico %>"><%- exame.crm_medico %></a>
                                     </span>
                                 </div>
                                 <div class="card-body">
                                     <h6 style="overflow-y: hidden;">Descrição do procedimento: </h6>
                                     <span class="m-2">
-                                        <%- teste.descricao %>
+                                        <%- exame.descricao %>
                                     </span>
                                 </div>
                             </div>
-                        <% })}%>     
-                    </div>
-    
-                    <div class="tab-pane fade" id="v-pills-exames" role="tabpanel" aria-labelledby="v-pills-exames-tab">
-                       <% if (historico.teste.length === 0 ) {%>
-                        <div> <h3 style="overflow-y: hidden;">Desculpe ainda não há nenhum exame cadastrado!</h3></div>
-                        <% } else {%>
-                        <% historico.exame.map( teste => {%>
-                            <div class="my-1 h-auto card ">
-                                <div class="card-header">
-                                    <h5 class="ml-2" style='overflow-y: hidden;'>Exame do dia: <%- teste.data %></h5>
-                                </div>
-                                <div class="card-body">
-                                    <%- teste.descricao %>
-                                </div>
-                            </div>
-                        <% })}%> 
+                        <% })} %> 
                     </div>
                     <div class="tab-pane fade" id="v-pills-consultas" role="tabpanel" aria-labelledby="v-pills-consultas-tab">
-                        <% if (historico.consulta.length === 0 ) {%>
-                        <div> <h3 style="overflow-y: hidden;">Desculpe ainda não há nenhum consulta cadastrado!</h3></div>
+                         <% if (historico.consulta.length === 0 ) {%>
+                        <div> <h3 style="overflow-y: hidden;">Desculpe ainda não há nenhum consulta cadastrada!</h3></div>
                         <% } else {%>
-                        <% historico.consulta.map( teste => {%>
-                            <div class="my-2 h-auto">
-                                <h4 class="ml-2" style='overflow-y: hidden;'>Consulta do dia: <%- teste.data %></h4>
-                                <%- teste.descricao %>
+                        <% historico.consulta.map( consulta => {%>
+                            <div class="my-1 h-auto card ">
+                                <div class="card-header">
+                                    <h5 style='overflow-y: hidden;'>Consulta do dia: <%- consulta.data %></h5>
+                                    <span style="font-size: 14px; color: grey;" >
+                                        Realizado pelo médico: <a href="/medico/perfil/<%- consulta.crm_medico %>"><%- consulta.crm_medico %></a>
+                                    </span>
+                                </div>
+                                <div class="card-body">
+                                    <h6 style="overflow-y: hidden;">Descrição do procedimento: </h6>
+                                    <span class="m-2">
+                                        <%- consulta.descricao %>
+                                    </span>
+                                </div>
                             </div>
-                        <% })}%> 
+                        <% })} %> 
                     </div>
                     <div class="tab-pane fade" id="v-pills-prontuarios" role="tabpanel" aria-labelledby="v-pills-prontuarios-tab">
-                        <% if (historico.teste.length === 0 ) {%>
+                         <% if (historico.prontuario.length === 0 ) {%>
                         <div> <h3 style="overflow-y: hidden;">Desculpe ainda não há nenhum prontuário cadastrado!</h3></div>
                         <% } else {%>
-                        <% historico.prontuario.map( teste => {%>
-                            <div class="my-2 h-auto">
-                                <h4 class="ml-2" style='overflow-y: hidden;'>Prontuario do dia: <%- teste.data %></h4>
-                                <%- teste.descricao %>
+                        <% historico.prontuario.map( prontuario => {%>
+                            <div class="my-1 h-auto card ">
+                                <div class="card-header">
+                                    <h5 style='overflow-y: hidden;'>Prontuário do dia: <%- prontuario.data %></h5>
+                                    <span style="font-size: 14px; color: grey;" >
+                                        Realizado pelo médico: <a href="/medico/perfil/<%- prontuario.crm_medico %>"><%- prontuario.crm_medico %></a>
+                                    </span>
+                                </div>
+                                <div class="card-body">
+                                    <h6 style="overflow-y: hidden;">Descrição do procedimento: </h6>
+                                    <span class="m-2">
+                                        <%- prontuario.descricao %>
+                                    </span>
+                                </div>
                             </div>
-                        <% })}%> 
+                        <% })} %> 
                     </div>
                     <div class="tab-pane fade" id="v-pills-perfi" role="tabpanel" aria-labelledby="v-pills-perfi-tab">Perfil</div>
                 </div>
